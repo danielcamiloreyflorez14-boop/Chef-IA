@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHEF-IA | Inteligencia Culinaria</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                fontFamily: {
+                    sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    title: ['Outfit', 'sans-serif'],
+                },
+                colors: {
+                    chef: {
+                        50: '#fff9f2',
+                        100: '#fff1e1',
+                        500: '#f59e0b',
+                        600: '#d97706',
+                        700: '#b45309',
+                        900: '#451a03',
+                    }
+                }
+            }
+        }
+    }
+</script>
+<style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+    h1, h2, button { font-family: 'Outfit', sans-serif; }
+    .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #d97706; border-radius: 10px; }
+</style>
+    <style>
+        :root {
+            --chef-primary: #d97706;
+            --chef-bg-accent: #fff7ed;
+            --chef-border: #fdba74;
+            --user-bg-accent: #f8fafc;
+            --user-border: #e2e8f0;
+        }
+
+        body {
+            background-color: #fcfcfc;
+            background-image: radial-gradient(#e5e7eb 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+            font-family: 'Outfit', sans-serif;
+            color: #1e293b;
+        }
+
+        /* Contenedor principal con altura dinámica */
+        .chat-height {
+            height: calc(100vh - 200px);
+            scrollbar-gutter: stable;
+        }
+
+        /* Burbuja de Chef-IA: Elegancia y Calidez */
+        .msg-chef {
+            background: var(--chef-bg-accent);
+            border: 1px solid var(--chef-border);
+            border-radius: 20px 20px 20px 4px;
+            box-shadow: 0 2px 4px rgba(217, 119, 6, 0.05);
+            transition: transform 0.2s ease;
+        }
+
+        /* Burbuja de Usuario: Limpieza y Contraste */
+        .msg-user {
+            background: white;
+            border: 1px solid var(--user-border);
+            border-radius: 20px 20px 4px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+        }
+
+        /* Animación de entrada para los mensajes */
+        .message-appear {
+            animation: slideIn 0.3s ease-out forwards;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Scrollbar Estilizada Minimalista */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 20px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--chef-primary);
+        }
+
+        /* Glassmorphism para el Input */
+        .glass-input {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body class="overflow-hidden">
+
+<div class="max-w-4xl mx-auto h-screen flex flex-col p-4 md:p-6">
+
+    <header class="bg-white/80 backdrop-blur-md rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-5 mb-6 flex items-center justify-between border border-white/20 relative overflow-hidden">
+        <div class="absolute -right-4 -top-4 text-amber-500/5 text-8xl rotate-12"><i class="fa-solid fa-utensils"></i></div>
+        
+        <div class="flex items-center gap-4 relative">
+            <div class="relative">
+                <div class="w-14 h-14 bg-gradient-to-tr from-amber-600 to-amber-400 rounded-2xl flex items-center justify-center text-white text-3xl shadow-lg shadow-amber-200 rotate-3 hover:rotate-0 transition-transform duration-300">
+                    <i class="fa-solid fa-hat-chef"></i>👨‍🍳
+                </div>
+                <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 border-2 border-white rounded-full"></div>
+            </div>
+            <div>
+                <h1 class="font-bold text-2xl text-slate-800 tracking-tight">CHEF-IA</h1>
+                <p class="text-[10px] text-amber-700 font-bold uppercase tracking-[0.2em] flex items-center">
+                    <span class="relative flex h-2 w-2 mr-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+                    </span>
+                    Inteligencia Culinaria
+                </p>
+            </div>
+        </div>
+        
+        <div class="hidden sm:flex flex-col items-end border-l border-slate-100 pl-6 text-right">
+            <span class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1">Filosofía</span>
+            <span class="text-xs italic text-slate-600 font-medium">"Razonamiento lógico, <br> no copia de red."</span>
+        </div>
+    </header>
+
+    <main id="chat" class="chat-height overflow-y-auto space-y-6 px-2 pb-4 custom-scrollbar">
+        
+        <div class="flex flex-col items-start message-appear">
+            <div class="msg-chef p-5 max-w-[85%] shadow-md relative group">
+                <div class="flex items-center gap-2 mb-2 text-amber-700">
+                    <i class="fa-solid fa-wand-magic-sparkles text-xs"></i>
+                    <span class="text-[10px] font-bold uppercase tracking-tighter">Asistente Didáctico</span>
+                </div>
+                <p class="text-slate-700 leading-relaxed">
+                    ¡Hola! 👨‍🍳 Soy Chef-IA. Estoy listo para razonar tu próxima comida. 
+                    <br><br>
+                    Para empezar, dime: ¿Qué ingredientes tienes y de cuánto tiempo dispones?
+                </p>
+                <div class="absolute -left-2 top-4 w-1 h-10 bg-amber-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            </div>
+            <span class="text-[9px] font-bold text-slate-400 mt-2 ml-4 flex items-center gap-1 uppercase">
+                <i class="fa-solid fa-check-double text-amber-500"></i> Chef-IA • En línea
+            </span>
+        </div>
+
+    </main>
+
+    <footer class="mt-auto pt-4">
+        <div class="bg-white p-2 rounded-[2rem] shadow-[0_10px_40px_rgb(0,0,0,0.08)] border border-slate-100">
+            <form id="form" class="flex items-center gap-2">
+                <div class="flex-1 relative group">
+                    <div class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-amber-500 transition-colors">
+                        <i class="fa-solid fa-carrot"></i>
+                    </div>
+                    <input id="input" type="text"
+                        placeholder="Tengo arroz, pollo y 20 minutos..."
+                        class="w-full pl-12 pr-4 py-4 bg-slate-50/50 border-none rounded-[1.5rem] focus:ring-2 focus:ring-amber-500/20 focus:bg-white transition-all text-slate-700 placeholder:text-slate-400 outline-none"
+                        autocomplete="off">
+                </div>
+                <button class="bg-slate-900 hover:bg-amber-600 text-white w-14 h-14 md:w-auto md:px-8 rounded-[1.5rem] flex items-center justify-center gap-3 transition-all duration-300 shadow-lg active:scale-95 group">
+                    <span class="hidden md:inline font-bold tracking-wide">Razonar Receta</span>
+                    <i class="fa-solid fa-paper-plane-top group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
+                    <i class="fa-solid fa-chevron-right md:hidden"></i>
+                </button>
+            </form>
+        </div>
+        <p class="text-center text-[9px] text-slate-400 mt-4 uppercase tracking-[0.3em] font-medium">
+            Sistema Chef-IA v1.0 • Especializado en Lógica Culinaria
+        </p>
+    </footer>
+
+</div>
+
+<script>
+/**
+ * 🧩 CAPA DATA: Conocimiento Estructurado
+ */
+const CHEF_DB = {
+    forbidden: ['política', 'historia', 'matemáticas', 'clima', 'deporte', 'fútbol', 'chiste', 'programación', 'ciencia', 'religión', 'guerra', 'economía', 'famosos'],
+    ingredients: ['arroz', 'pollo', 'huevo', 'papa', 'cebolla', 'ajo', 'pasta', 'tomate', 'carne', 'pan', 'leche', 'queso', 'aceite', 'sal', 'pimienta', 'zanahoria', 'limón', 'mantequilla', 'harina', 'atún', 'lentejas', 'garbanzos', 'pimiento', 'calabacín', 'berenjena', 'pescado', 'cerdo'],
+    greetings: ['hola', 'buenos días', 'buenas tardes', 'buenas noches', 'que tal', 'saludos', 'hey', 'buenas'],
+    techniques: ['sofreír', 'sellar', 'hervir', 'hornear', 'saltear', 'al vapor', 'gratinar', 'marinar']
+};
+/**
+ * 🧠 CAPA LOGIC: Razonamiento Culinario
+ */
+const ChefLogic = {
+    context: { ingredients: [], people: 1, time: null, level: 'principiante' },
+
+    // Punto 5.1 & 5.2: Entender intención y detectar datos
+    parseInput(text) {
+        const words = text.toLowerCase().trim();
+        
+        this.context.ingredients = CHEF_DB.ingredients.filter(i => 
+            new RegExp(`\\b${i}\\b|${i}s\\b`, 'i').test(words)
+        );
+        
+        const timeMatch = words.match(/(\d+)\s*(min|minuto|minutos|hora|horas|hr|h)/i);
+        const peopleMatch = words.match(/(\d+)\s*(persona|personas|comensal|comensales|gente|plato|platos)/i);
+        
+        if (timeMatch) {
+            this.context.time = timeMatch[0];
+        }
+        
+        if (peopleMatch) {
+            this.context.people = parseInt(peopleMatch[1]);
+        }
+
+        return this.generateDecision(words);
+    },
+
+    // Punto 5.4: Razonar qué receta encaja mejor
+    generateDecision(text) {
+        if (CHEF_DB.forbidden.some(word => text.includes(word))) {
+            return "Estoy aquí para ayudarte únicamente con cocina. Si quieres, dime qué ingredientes tienes o qué te gustaría preparar.";
+        }
+
+        if (CHEF_DB.greetings.some(g => text.includes(g))) {
+            return "¡Hola! 👨‍🍳 ¿Qué vamos a cocinar hoy? Dime qué tienes a mano y diseñaremos una receta con lógica profesional.";
+        }
+
+        if (this.context.ingredients.length > 0) {
+            return this.buildRecipeResponse();
+        }
+
+        if (this.context.time || this.context.people > 1) {
+            return `He anotado que dispones de ${this.context.time || 'poco tiempo'} para ${this.context.people} personas, pero necesito que me digas qué ingredientes tienes para poder razonar la técnica adecuada.`;
+        }
+
+        return "Para poder ofrecerte una propuesta culinaria coherente, necesito que me indiques qué ingredientes tienes disponibles en este momento.";
+    },
+
+    buildRecipeResponse() {
+        const { ingredients, time, people } = this.context;
+        let r = `Perfecto. He diseñado una propuesta lógica para **${people} ${people > 1 ? 'comensales' : 'persona'}** basada en tus ingredientes:\n\n`;
+
+        if (ingredients.includes('pollo') && ingredients.includes('arroz')) {
+            r += "🍗 **Arroz Meloso con Pollo Sellado**\n\n**El porqué:** Iniciaremos sellando el pollo a fuego alto para generar la Reacción de Maillard, lo que carameliza los azúcares y proteínas superficiales. Cocinar el arroz en ese mismo fondo permite que el almidón absorba los jugos y grasas recuperadas de la sartén.";
+        } else if (ingredients.includes('huevo')) {
+            r += "🍳 **Omelette de Técnica Francesa**\n\n**El porqué:** Aplicaremos calor mínimo y movimiento constante para coagular las proteínas del huevo sin que se doren. Esto evita la oxidación de las grasas y garantiza una textura elástica, húmeda y de sabor delicado.";
+        } else if (ingredients.includes('pasta') || ingredients.includes('tomate')) {
+            r += `🍝 **Pasta en Emulsión de ${ingredients.join(' y ')}**\n\n**El porqué:** Utilizaremos una técnica de emulsión rápida usando el agua de cocción (rica en almidón) junto con los ingredientes salteados. Esto crea una salsa sedosa que se adhiere físicamente a la superficie de la pasta.`;
+        } else {
+            r += `🥗 **Salteado Técnico de ${ingredients.join(' y ')}**\n\n**El porqué:** Aplicaremos cortes tipo 'juliana' o 'brunoise' para maximizar el área de contacto con el calor. El salteado rápido preserva las paredes celulares de los vegetales, manteniendo nutrientes y una textura crocante.`;
+        }
+
+        if (time) {
+            r += `\n\n⏱️ **Optimización Temporal:** He ajustado la intensidad del fuego y simplificado las reducciones para encajar en tus ${time}.`;
+        }
+        
+        r += "\n\n¿Deseas que desglose los pasos técnicos de esta preparación?";
+        return r;
+    }
+};
+
+/**
+ * ⚙️ CAPA CORE & UI: Control de Estado e Interfaz
+ */
+const App = {
+    ui: {
+        chat: document.querySelector('#chat'),
+        form: document.querySelector('#form'),
+        input: document.querySelector('#input'),
+        button: document.querySelector('#form button')
+    },
+
+    init() {
+        this.ui.form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (this.ui.input.value.trim()) {
+                this.handleUserAction();
+            }
+        });
+
+        this.ui.input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                this.ui.form.dispatchEvent(new Event('submit'));
+            }
+        });
+    },
+
+handleUserAction() {
+        const text = this.ui.input.value.trim();
+        if (!text) return;
+
+        this.renderMessage(text, 'user');
+        this.ui.input.value = '';
+        this.ui.button.disabled = true;
+        this.ui.button.classList.add('opacity-50', 'cursor-not-allowed');
+
+        setTimeout(() => {
+            const response = ChefLogic.parseInput(text);
+            this.renderMessage(response, 'chef');
+            this.ui.button.disabled = false;
+            this.ui.button.classList.remove('opacity-50', 'cursor-not-allowed');
+            this.ui.input.focus();
+        }, 750);
+    },
+
+renderMessage(text, type) {
+        const msg = document.createElement('div');
+        const isUser = type === 'user';
+        
+        msg.className = `flex flex-col ${isUser ? 'items-end' : 'items-start'} animate__animated animate__fadeInUp animate__faster`;
+        
+        msg.innerHTML = `
+            <div class="msg-${type} p-5 max-w-[85%] shadow-[0_4px_15px_rgba(0,0,0,0.02)] border border-white/20">
+                ${!isUser ? '<div class="flex items-center gap-2 mb-2 text-chef-600"><i class="fa-solid fa-wand-magic-sparkles text-[10px]"></i><span class="text-[9px] font-black uppercase tracking-tighter">Razonamiento Técnico</span></div>' : ''}
+                <p class="text-slate-700 text-sm leading-relaxed whitespace-pre-line font-medium">${text}</p>
+            </div>
+            <div class="flex items-center gap-1.5 mt-2 ${isUser ? 'flex-row-reverse mr-3' : 'ml-3'}">
+                <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest">${isUser ? 'Comensal' : 'Chef-IA'}</span>
+                <span class="text-[8px] text-slate-300">•</span>
+                <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+            </div>
+        `;
+
+        this.ui.chat.appendChild(msg);
+        this.ui.chat.scrollTo({
+            top: this.ui.chat.scrollHeight,
+            behavior: 'smooth'
+        });
+    }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    App.init();
+});
+</script>
+
+</body>
+</html>
