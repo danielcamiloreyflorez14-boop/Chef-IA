@@ -45,8 +45,51 @@ No se utilizan frameworks ni librerías externas.
 ---
 
 ## 📁 Estructura del Proyecto
-Chef-IA/ ├── index.html ├── css/ │   └── style.css ├── js/ │   ├── app.js      # Inicialización general │   ├── chat.js     # Interfaz de chat y manejo de mensajes │   └── logic.js    # Lógica culinaria y razonamiento ├── data/ │   └── recipes.json └── assets/
-
+Chef-IA/
+├── index.html
+├── README.md
+├── LICENSE
+│
+├── src/
+│   ├── core/
+│   │   ├── app.js
+│   │   ├── state.js
+│   │   └── config.js
+│   │
+│   ├── ui/
+│   │   ├── chat.js
+│   │   ├── message.js
+│   │   └── input.js
+│   │
+│   ├── logic/
+│   │   ├── router.js
+│   │   ├── greetings.js
+│   │   ├── filters.js
+│   │   ├── reasoning.js
+│   │   └── context.js
+│   │
+│   ├── data/
+│   │   ├── recipes.json
+│   │   ├── ingredients.json
+│   │   └── rules.json
+│   │
+│   └── utils/
+│       ├── helpers.js
+│       └── validators.js
+│
+├── styles/
+│   ├── base.css
+│   ├── layout.css
+│   ├── chat.css
+│   └── theme.css
+│
+├── assets/
+│   ├── icons/
+│   ├── images/
+│   └── fonts/
+│
+└── public/
+    └── favicon.ico
 ---
 
 ## 🗓️ Plan de Desarrollo (30 días)
