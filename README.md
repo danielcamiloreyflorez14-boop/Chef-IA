@@ -45,6 +45,9 @@ No se utilizan frameworks ni librerías externas.
 ---
 
 ## 📁 Estructura del Proyecto
+
+### Todo 😎
+
 Chef-IA/
 ├── index.html
 ├── README.md
