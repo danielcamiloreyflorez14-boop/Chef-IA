@@ -58,41 +58,41 @@ No se utilizan frameworks ni librerías externas.
 - │   │   ├── app.js
 - │   │   ├── state.js
 - │   │   └── config.js
-│   │
-│   ├── ui/
-│   │   ├── chat.js
-│   │   ├── message.js
-│   │   └── input.js
-│   │
-│   ├── logic/
-│   │   ├── router.js
-│   │   ├── greetings.js
-│   │   ├── filters.js
-│   │   ├── reasoning.js
-│   │   └── context.js
-│   │
-│   ├── data/
-│   │   ├── recipes.json
-│   │   ├── ingredients.json
-│   │   └── rules.json
-│   │
-│   └── utils/
-│       ├── helpers.js
-│       └── validators.js
-│
-├── styles/
-│   ├── base.css
-│   ├── layout.css
-│   ├── chat.css
-│   └── theme.css
-│
-├── assets/
-│   ├── icons/
-│   ├── images/
-│   └── fonts/
-│
-└── public/
-    └── favicon.ico
+- │   │
+- │   ├── ui/
+- │   │   ├── chat.js
+- │   │   ├── message.js
+- │   │   └── input.js
+- │   │
+- │   ├── logic/
+- │   │   ├── router.js
+- │   │   ├── greetings.js
+- │   │   ├── filters.js
+- │   │   ├── reasoning.js
+- │   │   └── context.js
+- │   │
+- │   ├── data/
+- │   │   ├── recipes.json
+- │   │   ├── ingredients.json
+- │   │   └── rules.json
+- │   │
+- │   └── utils/
+- │       ├── helpers.js
+- │       └── validators.js
+- │
+- ├── styles/
+- │   ├── base.css
+- │   ├── layout.css
+- │   ├── chat.css
+- │   └── theme.css
+- │
+- ├── assets/
+- │   ├── icons/
+- │   ├── images/
+- │   └── fonts/
+- │
+- └── public/
+-     └── favicon.ico
 ---
 
 ## 🗓️ Plan de Desarrollo (30 días)
