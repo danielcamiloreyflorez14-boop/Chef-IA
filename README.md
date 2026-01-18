@@ -48,16 +48,16 @@ No se utilizan frameworks ni librerías externas.
 
 ### Todo 😎
 
-Chef-IA/
-├── index.html
-├── README.md
-├── LICENSE
-│
-├── src/
-│   ├── core/
-│   │   ├── app.js
-│   │   ├── state.js
-│   │   └── config.js
+- Chef-IA/
+- ├── index.html
+- ├── README.md
+- ├── LICENSE
+- │
+- ├── src/
+- │   ├── core/
+- │   │   ├── app.js
+- │   │   ├── state.js
+- │   │   └── config.js
 │   │
 │   ├── ui/
 │   │   ├── chat.js
